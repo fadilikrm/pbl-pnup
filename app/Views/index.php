@@ -69,14 +69,19 @@
             <?php else : ?>
               <a href="<?= route_to('pelangganlogout') ?>" class="nav-item nav-link">Logout</a>
           </div>
-          <div class="nav-item">
+          <div class="nav-item nav-link">
             <a href="#" data-bs-toggle="modal" data-bs-target="#keranjangModal">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fa fa-shopping-cart"> Transaksi</i>
             </a>
           </div>
-          <div class="dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span style="padding-right:10px" class="mr-2 d-none d-lg-inline text-gray-600 large with-divider border-left"><?= session('nama_pelanggan') ?></span>
+          <div class="nav-item nav-link">
+            <a  href="<?= route_to('riwayat') ?>">
+              <i class="fa fa-eye"> Riwayat</i>
+            </a>
+          </div>
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span style="padding-right:10px; font-size:20px;" class="mr-2 d-none d-lg-inline text-gray-600 large with-divider border-left"><?= session('nama_pelanggan') ?></span>
               <img class="img-profile rounded-circle" src="<?= base_url('/public/pelanggan/img/' . $session->get('foto')) ?>" style="width: 70px;" />
             </a>
             <div class="dropdown-menu bg-light" aria-labelledby="userDropdown">
@@ -97,10 +102,10 @@
     <div class="container">
       <div class="row g-5 align-items-center">
         <div class="col-lg-7 col-md-12">
-          <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-4 animated bounceInDown">Welcome to Sotang Mangga Tiga</small>
+          <h2 class="mt-2 d-inline-block text-dark text-uppercase bg-light">Welcome to Sotang Mangga Tiga</h2>
           <h1 class="display-1 mb-4 animated bounceInDown">Cemilan <span class="text-primary"> Enak</span> Dan<span class="text-primary"> Mengenyangkan</span></h1>
-          <a href="#Order" class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 me-4 animated bounceInLeft">Book Now</a>
-          <a href="#About" class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 animated bounceInLeft">Know More</a>
+          <a href="<?= base_url('#Order') ?>" class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 me-4 animated bounceInLeft">Book Now</a>
+          <a href="<?= base_url('#About') ?>" class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 animated bounceInLeft">Know More</a>
         </div>
         <div class="col-lg-5 col-md-12">
           <img src="img/home website.png" class="img-fluid rounded animated zoomIn" alt="" />

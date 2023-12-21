@@ -24,6 +24,18 @@ class Transaksi extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '100',
             ],
+            'nomor_telepon' => [
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'alamat' => [
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'email' => [
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+            ],
             'tanggal_transaksi' => [
                 'type' => 'DATETIME',
             ],
@@ -31,9 +43,9 @@ class Transaksi extends Migration
                 'type' => 'INT',
                 'constraint' => 15,
             ],
-            'metode_pembayaran' => [
+            'catatan' => [
                 'type' => 'VARCHAR',
-                'constraint' => '50',
+                'constraint' => '200',
             ],
             'status_transaksi' => [
                 'type' => 'VARCHAR',

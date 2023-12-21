@@ -11,6 +11,7 @@ class DetailTransaksiModel extends Model
     protected $allowedFields = [
         'id_produk',
         'id_transaksi',
+        'nama_produk',
         'jumlah_pembelian',
         'harga_satuan',
         'total_harga_pembelian'

@@ -1,7 +1,6 @@
 <?= $this->extend('admin/layout/link') ?>
 <?= $this->section('auth') ?>
 <div class="container">
-
     <!-- Outer Row -->
     <div class="row justify-content-center">
 

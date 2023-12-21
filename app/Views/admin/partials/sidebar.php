@@ -51,6 +51,7 @@
                 <a class="collapse-item" href="<?= route_to('testimoni') ?>">Manajemen Testimoni</a>
                 <a class="collapse-item" href="<?= route_to('galerifoto') ?>">Manajemen Galeri Foto</a>
                 <a class="collapse-item" href="<?= route_to('omset') ?>">Manajemen Omset</a>
+                <a class="collapse-item" href="<?= route_to('transaksi') ?>">Manajemen Transaksi</a>
             </div>
         </div>
     </li>

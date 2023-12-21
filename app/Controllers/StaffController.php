@@ -105,6 +105,56 @@ class StaffController extends BaseController
         return redirect()->to('/admin/staff');
     }
 
+    public function staffeditprofile($id)
+    {
+        $model = new StaffModel();
+        $data['staff'] = $model->find($id);
+        return view('/admin/staffeditprofile', $data);
+    }
+
+    public function staffeditprofilestore()
+    {
+        $id_staff = $this->request->getPost('id_staff');
+        $nama = $this->request->getPost('nama');
+        $level = $this->request->getPost('level');
+        $email = $this->request->getPost('email');
+        $file = $this->request->getFile('foto');
+    
+        // Siapkan array data untuk update
+        $dataToUpdate = [
+            'nama' => $nama,
+            'level' => $level,
+            'email' => $email,
+            // ... (tambahkan kolom lainnya)
+        ];
+    
+        // Cek apakah password baru diisi dalam form
+        $newPassword = $this->request->getPost('password');
+        if (!empty($newPassword)) {
+            // Jika diisi, hash password baru dan tambahkan ke array data
+            $dataToUpdate['password'] = password_hash((string) $newPassword, PASSWORD_DEFAULT);
+        }
+    
+        if ($file->isValid() && !$file->hasMoved()) {
+            // Tentukan direktori penyimpanan file
+            $uploadDir = 'public/staff/img';
+    
+            // Handle the file upload
+            $newName = $file->getRandomName();
+            $file->move($uploadDir, $newName);
+    
+            // Tambahkan nama file baru ke array data
+            $dataToUpdate['foto'] = $newName;
+        }
+    
+        // Simpan data ke dalam database (gunakan model atau DB)
+        $model = new StaffModel();
+        $model->update($id_staff, $dataToUpdate);
+    
+        // Redirect kembali ke halaman pelanggan setelah mengedit
+        return redirect()->to('/admin/dashboard');
+    }
+
     public function staffdestroy($id)
     {
         // Membuat instance dari model StaffModel

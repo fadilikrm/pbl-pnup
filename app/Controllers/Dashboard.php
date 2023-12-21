@@ -4,34 +4,30 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\OmsetModel;
+use App\Models\TransaksiModel;
 
 class Dashboard extends BaseController
 {
     public function dashboard()
     {
         $omsetModel = new OmsetModel();
-        
-        // Mendapatkan bulan dan tahun saat ini
         $bulanSekarang = date('m');
         $tahunSekarang = date('Y');
-        
-        // Query untuk mendapatkan total bulanan dan tahunan saat ini
         $totalBulanan = $omsetModel->selectSum('total_harga_produk')
-                                    ->where('MONTH(date)', $bulanSekarang)
-                                    ->where('YEAR(date)', $tahunSekarang)
-                                    ->first();
-                                    
+            ->where('MONTH(date)', $bulanSekarang)
+            ->where('YEAR(date)', $tahunSekarang)
+            ->first();
         $totalTahunan = $omsetModel->selectSum('total_harga_produk')
-                                    ->where('YEAR(date)', $tahunSekarang)
-                                    ->first();
-        
-        // Menyiapkan data untuk dikirim ke view
+            ->where('YEAR(date)', $tahunSekarang)
+            ->first();
+        $db = db_connect();
+        $db->query('CALL getTotalTransaksi()');
+        $totalTransaksi = $db->query('SELECT @totalTransaksi as total_transaksi')->getRow()->total_transaksi;
         $data = [
             'total_bulanan' => $totalBulanan['total_harga_produk'],
-            'total_tahunan' => $totalTahunan['total_harga_produk']
+            'total_tahunan' => $totalTahunan['total_harga_produk'],
+            'total_transaksi' => $totalTransaksi,
         ];
-        
-        // Memanggil view dan mengirimkan data
         return view('/admin/dashboard', $data);
     }
 }

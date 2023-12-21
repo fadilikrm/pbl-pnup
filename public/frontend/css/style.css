@@ -1,4 +1,8 @@
 /*** Spinner Start ***/
+body{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
 #spinner {
     opacity: 0;
     visibility: hidden;
