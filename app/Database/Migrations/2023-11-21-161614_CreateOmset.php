@@ -21,25 +21,13 @@ class Omset extends Migration
                 'unsigned' => true,
             ],
             'date' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
             ],
             'jumlah_beli_produk' => [
                 'type' => 'INT',
                 'constraint' => 15,
             ],
             'total_harga_produk' => [
-                'type' => 'INT',
-                'constraint' => 15,
-            ],
-            'total_keseluruhan' => [
-                'type' => 'INT',
-                'constraint' => 15,
-            ],
-            'total_bulanan' => [
-                'type' => 'INT',
-                'constraint' => 15,
-            ],
-            'total_tahunan' => [
                 'type' => 'INT',
                 'constraint' => 15,
             ],

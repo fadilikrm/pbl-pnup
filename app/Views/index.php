@@ -75,7 +75,7 @@
             </a>
           </div>
           <div class="nav-item nav-link">
-            <a  href="<?= route_to('riwayat') ?>">
+            <a href="<?= route_to('riwayat') ?>">
               <i class="fa fa-eye"> Riwayat</i>
             </a>
           </div>
@@ -121,7 +121,7 @@
       <div class="container">
         <div class="row g-5 align-items-center">
           <div class="col-lg-4 wow bounceInUp " data-wow-delay="0.1s">
-            <img src="img/about.jpg" class="img-fluid rounded center" alt="" style="width: 100%;" />
+            <img src="img/poster.jpg" class="img-fluid rounded center" alt="" style="width: 100%;" />
           </div>
           <div class="col-lg-8 wow bounceInUp" data-wow-delay="0.3s">
             <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">About Us</small>
@@ -156,13 +156,17 @@
                 <?php foreach ($produk as $pr) : ?>
                   <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.1s">
                     <div class="menu-item d-flex align-items-center">
-                      <img class="flex-shrink-0" style="max-width:125px;" src="<?= base_url('public/produk/img/' . $pr['foto']); ?>" alt="Product Image" />
+                      <img class="flex-shrink-0" style="width:150px;" src="<?= base_url('public/produk/img/' . $pr['foto']); ?>" alt="Product Image" />
                       <div class="w-100 d-flex flex-column text-start ps-4">
                         <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
                           <h4><?= $pr['nama_produk']; ?></h4>
                           <h4 class="text-primary"><?= 'Rp ' . number_format($pr['harga'], 0, ",", "."); ?></h4>
                         </div>
-                        <p class="mb-0"><?= $pr['deskripsi_produk']; ?></p>
+                        <div class="d-flex justify-content-between">
+                          <p class="mb-0"><?= $pr['deskripsi_produk']; ?></p>
+                          <a href="<?= base_url('public/produk/img/' . $pr['foto']) ?>" data-lightbox="event-1" class="my-auto"><i>Lihat Detail Produk</i></a>
+                        </div>
+
                         <p class="mb-0"><b><?= $pr['status']; ?></b></p>
                       </div>
                     </div>
@@ -288,7 +292,7 @@
             <div class="testimonial-item position-relative bg-white p-5 mt-4">
               <span class="testimonial-date position-absolute top-0 end-0 me-5 mt-2 text-end"><?= $testimoni['date'] ?></span>
               <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-              <h4 class="mb-0"><?= esc($testimoni['judul']) ?></h4>
+              <h4 class="mb-2"><?= esc($testimoni['judul']) ?></h4>
               <p class="mb-4"><?= esc($testimoni['deskripsi']) ?></p>
               <div class="d-flex align-items-center">
                 <img class="flex-shrink-0 rounded-circle" style="width: 50px; height:50px;" src="<?= base_url('public/pelanggan/img/' . $testimoni['foto']) ?>" alt="">
@@ -311,30 +315,29 @@
         <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
           <h1 class="display-5 mb-5">Dokumentasi UMKM</h1>
         </div>
-        <?php foreach ($galerifoto as $gf) : ?>
-          <div class="tab-class text-center" id="Foto">
-            <div class="tab-content">
-              <div id="tab-1" class="tab-pane fade show p-0 active">
-                <div class="row g-4">
-                  <div class="col-lg-12">
-                    <div class="row g-4">
-                      <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.1s">
-                        <div class="event-img position-relative">
-                          <img class="img-fluid rounded w-100" src="<?= base_url('public/galerifoto/img/' . $gf['foto']) ?>" alt="">
-                          <div class="event-overlay d-flex flex-column p-4">
-                            <h4 class="me-auto"><?= $gf['nama_foto'] ?></h4>
-                            <a href="<?= base_url('public/galerifoto/img/' . $gf['foto']) ?>" data-lightbox="event-1" class="my-auto"><i class="fas fa-search-plus text-dark fa-2x"></i></a>
-                          </div>
-                        </div>
-                        <h5 style="margin-top: 10px;"><?= $gf['deskripsi_foto'] ?></h5>
-                      </div>
-                    </div>
-                  </div>
+        <div class="row g-4">
+          <?php $count = 0; ?>
+          <?php foreach ($galerifoto as $gf) : ?>
+            <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s">
+              <div class="event-img position-relative">
+                <img class="img-fluid rounded w-100" src="<?= base_url('public/galerifoto/img/' . $gf['foto']) ?>" alt="">
+                <div class="event-overlay d-flex flex-column justify-content-center align-items-center p-4">
+                  <h4 class="me-auto"><?= $gf['nama_foto'] ?></h4>
+                  <a href="<?= base_url('public/galerifoto/img/' . $gf['foto']) ?>" data-lightbox="event-1" class="my-auto">
+                    <i class="fas fa-search-plus text-dark fa-2x"></i>
+                  </a>
                 </div>
               </div>
+              <p style="margin-top: 10px; margin-bottom: 2rem; color:black;"><?= $gf['deskripsi_foto'] ?></p>
+
             </div>
-          </div>
-        <?php endforeach; ?>
+            <?php $count++; ?>
+            <?php if ($count % 4 === 0) : ?>
+        </div>
+        <div class="row g-4">
+        <?php endif; ?>
+      <?php endforeach; ?>
+        </div>
       </div>
     </div>
   </section>
@@ -421,8 +424,12 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <!-- Isi dari modal di sini -->
-        <div class="modal-header">
-          <h5 class="modal-title" id="keranjangModalLabel">Keranjang</h5>
+        <div class="modal-header ">
+
+          <h4 class="modal-title" id="keranjangModalLabel" style="text-align: center; width: 100%;">
+            <span style="display: inline-block; font-size: 2rem; font-weight: bold; font-family: 'Times New Roman', Times, serif; text-align: center; width: 100%;">Keranjang</span>
+          </h4>
+
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <!-- Modal Body -->
@@ -445,7 +452,7 @@
                     <!-- Product Row -->
                     <tr class="product-row">
                       <th scope="row">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center ">
                           <img src="<?= base_url('public/produk/img/' . $pr['foto']); ?>" alt="Product Image" class="flex-shrink-0" style="max-width:125px;">
                         </div>
                       </th>
@@ -473,7 +480,7 @@
               <h4 class="mt-4">Total: <span id="subtotal">Rp 0</span></h4>
             </div>
             <!-- Checkout Button -->
-            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4">Checkout</button>
+            <button class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 ">Checkout</button>
           </form>
         </div>
       </div>

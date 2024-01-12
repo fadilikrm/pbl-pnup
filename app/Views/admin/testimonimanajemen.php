@@ -3,10 +3,13 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-        For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+    <h1 class="h3 mb-2 text-gray-800">Table Testimoni</h1>
+    <p class="mb-4">Tabel ini merupakan table yang mengelola data testimoni dengan opsi menghapus data.</p>
+    <p>KETERANGAN:</p>
 
+    <p><a  class="btn btn-danger" style="margin-right: 10px;">
+    <i class="fas fa-trash-alt"></i>
+    </a><span>Digunakan untuk menghapus data</span></p>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -50,7 +53,7 @@
                                         <td><?= $t['deskripsi']; ?></td>
                                         <td>
                                             <!-- Tombol untuk membuka modal -->
-                                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal<?= $t['id_testimoni']; ?>">Delete</a>
+                                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal<?= $t['id_testimoni']; ?>"><i class="fas fa-trash-alt"></i></a>
                                             <!-- Modal Konfirmasi Delete -->
                                             <div class="modal fade" id="confirmDeleteModal<?= $t['id_testimoni']; ?>" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel<?= $t['id_testimoni']; ?>" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">

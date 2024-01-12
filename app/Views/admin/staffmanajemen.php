@@ -3,14 +3,29 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-        For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+    <h1 class="h3 mb-2 text-gray-800">Table Staff</h1>
+<p class="mb-4">Tabel ini merupakan table yang mengelola data staff dengan opsi untuk menambahkan, mengedit, dan menghapus data.</p>
+<p>KETERANGAN:</p>
+<p><a class="btn btn-warning" style="margin-right: 10px;">
+    <i class="fas fa-pencil-alt"></i>
+    </a><span>Digunakan untuk mengubah data
+</span></p>
+    <p><a class="btn btn-danger" style="margin-right: 10px;">
+    <i class="fas fa-trash-alt"></i>
+    </a><span>Digunakan untuk menghapus data</span></p>
+
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Manajemen Staff</h6>
+            <h6 class="m-0 font-weight-bold " style="color: #d4a762;">Data Staff</h6>
+        </div>
+        <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
+    Data berhasil ditambahkan!
+  </div>
+        
+        <div  id="alertH" class="alert alert-danger alertH" role="alert" style="display: none;">
+        Data berhasil dihapus!
         </div>
         <div class="card-body">
             <div class="text-weight mb-3">
@@ -48,9 +63,9 @@
                                         <td><?= $s['email']; ?></td>
                                         <td><?= $s['level']; ?></td>
                                         <td>
-                                            <a href="<?= site_url('admin/staffedit/' . $s['id_staff']); ?>" class="btn btn-warning">Edit</a>
+                                            <a href="<?= site_url('admin/staffedit/' . $s['id_staff']); ?>" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
                                             <!-- Tombol untuk membuka modal -->
-                                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal<?= $s['id_staff']; ?>">Delete</a>
+                                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal<?= $s['id_staff']; ?>"><i class="fas fa-trash-alt"></i></a>
 
                                             <!-- Modal Konfirmasi Delete -->
                                             <div class="modal fade" id="confirmDeleteModal<?= $s['id_staff']; ?>" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel<?= $s['id_staff']; ?>" aria-hidden="true">

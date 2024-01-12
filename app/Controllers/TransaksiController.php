@@ -14,7 +14,11 @@ class TransaksiController extends BaseController
     $detailTransaksiModel = new DetailTransaksiModel();
     $transaksiData = $transaksiModel->findAll();
     foreach ($transaksiData as &$transaksi) {
-        $transaksi['detailTransaksi'] = $detailTransaksiModel->where('id_transaksi', $transaksi['id_transaksi'])->findAll();
+        $transaksi['detailTransaksi'] = $detailTransaksiModel
+            ->select('detailtransaksi.*, produk.nama_produk, produk.harga')
+            ->join('produk', 'detailtransaksi.id_produk = produk.id_produk')
+            ->where('id_transaksi', $transaksi['id_transaksi'])
+            ->findAll();
     }
     $data['transaksi'] = $transaksiData;
     return view('/admin/transaksimanajemen', $data);

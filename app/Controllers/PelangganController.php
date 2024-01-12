@@ -33,7 +33,6 @@ class PelangganController extends BaseController
         $model->save([
             'nama_pelanggan' => $this->request->getPost('nama_pelanggan'),
             'foto' => $newName,
-            'role' => 'pelanggan',
             'email' => $this->request->getPost('email'),
             'alamat' => $this->request->getPost('alamat'),
             'nomor_telepon' => $this->request->getPost('nomor_telepon'),

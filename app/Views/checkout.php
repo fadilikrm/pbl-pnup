@@ -2,10 +2,13 @@
 <?= $this->section('auth') ?>
 <div class="container-fluid py-5">
     <div class="container py-5">
-        <h1 class="mb-4">Detail Pembayaran</h1>
+    <h2 class="mb-5" style="text-align: center; color: #d4a762; font-family: 'Times New Roman', Times, serif; font-size: 50px; font-weight: bold;"><span>Detail Pembayaran</span></h2>
+
+        
+        
         <form action="<?= route_to('transaksitambahstore') ?>" method="post" enctype="multipart/form-data">
-            <div class="row g-4">
-                <div class="col-md-10 col-lg-6 col-xl-5">
+            <div class="row g-4" >
+                <div class="col-md-10 col-lg-6 col-xl-5 " >
                     <div class="form-item">
                         <label class="form-label my-3">Nama<sup>*</sup></label>
                         <input type="text" class="form-control" value="<?= session('nama_pelanggan') ?>" name="nama_pelanggan">
@@ -28,7 +31,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6 col-xl-7">
-                    <div class="table-responsive">
+                    <div class="table-responsive" >
                         <table class="table">
                             <thead>
                                 <tr>
@@ -69,14 +72,15 @@
                             </tbody>
                         </table>
                         <div class="subtotal-section">
-                            <h4 class="mt-4">Total: <span id="subtotal"><?= 'Rp ' . number_format(array_sum(array_column($dataToRecord, 'total')), 0, ",", "."); ?></span></h4>
-                        </div>
+    <h4 class="mt-4" style="font-weight: bold;">TOTAL : <span id="subtotal"><?= 'Rp ' . number_format(array_sum(array_column($dataToRecord, 'total')), 0, ",", "."); ?></span></h4>
+</div>
+
                     </div>
                 </div>
             </div>
             <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Buat
-                    Pesanan</button>
+                <button type="submit" class="btn border-white py-3 px-4 text-uppercase w-100 text bold"style="background-color: #d4a762; border-color: #d4a762; color: white;" ><span>Buat
+                    Pesanan</span></button>
             </div>
         </form>
     </div>

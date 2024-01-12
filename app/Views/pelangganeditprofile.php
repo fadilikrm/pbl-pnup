@@ -6,7 +6,7 @@
             <div class="card-body p-0">
                 <div class="p-5">
                     <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">Edit Data pelanggan</h1>
+                        <h1 class="h4 mb-4"  style="color: #d4a762;"><strong>Edit Data pelanggan</strong></h1>
                     </div>
                     <form class="user" action="<?= route_to('pelangganeditprofilestore') ?>" method="post" enctype="multipart/form-data">
                         <!-- Tambahkan input hidden untuk menyimpan ID pelanggan yang diubah -->
@@ -54,10 +54,34 @@
                                 <input style="border: none;" type="file" class="form-control" id="exampleFile" name="foto" value="<?= $pelanggan['foto'] ?>" placeholder="Masukkan Email">
                             </div>
                         </div>
-                        <div class="col-sm-6 offset-sm-3">
-                            <button type="submit" class="btn btn-primary btn-user btn-block">Simpan Perubahan</button>
-                        </div>
-                    </form>
+                        <td>
+                                        <button class="col-sm-6 offset-sm-3 btn btn-primary" type="button" data-toggle="modal" data-target="#Modaledit"  style="background-color: #d4a762; border-color: #d4a762;">
+                                          Simpan Perubahan
+                                        </button>
+                                      </td>
+
+                                      <div class="modal fade" id="Modaledit" tabindex="-1" role="dialog" aria-labelledby="ModaleditLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="ModaleditLabel">Konfirmasi Perubahan</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              Apakah Anda yakin ingin mengubah data ini?
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                              <button type="submit" class="btn btn-primary" id="tombolEdit">Ya, Edit</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                        </div>
+                                      </div>
+                                    </form>
 
 
                 </div>

@@ -3,18 +3,24 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-        For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-
+    <h1 class="h3 mb-2 text-gray-800">Table Galeri Foto</h1>
+    <p class="mb-4">Tabel ini merupakan table yang mengelola data galeri foto dengan opsi untuk menambahkan,mengedit dan menghapus data.</p>
+    <p>KETERANGAN:</p>
+    <p><a  class="btn btn-warning" style="margin-right: 10px;">
+            <i class="fas fa-pencil-alt"></i>
+        </a><span>Digunakan untuk mengubah data
+        </span></p>
+    <p><a  class="btn btn-danger" style="margin-right: 10px;">
+            <i class="fas fa-trash-alt"></i>
+        </a><span>Digunakan untuk menghapus data</span></p>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Manajemen Galeri Foto</h6>
+            <h6 class="m-0 font-weight-bold " style="color: #d4a762;">Data Galeri Foto</h6>
         </div>
         <div class="card-body">
             <div class="text-weight mb-3">
-                <form action="<?= route_to('galerifototambah') ?>"  enctype="multipart/form-data">
+                <form action="<?= route_to('galerifototambah') ?>" enctype="multipart/form-data">
                     <button type="submit" class="btn btn-success btn-sm">
                         <i class="fas fa-plus"></i> Tambah Data
                     </button>
@@ -45,9 +51,9 @@
                                         <td> <img src="<?= base_url('public/galerifoto/img/' . $gf['foto']); ?>" alt="Foto" style="max-width: 100px;"></td>
                                         <td><?= $gf['deskripsi_foto']; ?></td>
                                         <td>
-                                            <a href="<?= site_url('admin/galerifotoedit/' . $gf['id_foto']); ?>" class="btn btn-warning">Edit</a>
+                                            <a href="<?= site_url('admin/galerifotoedit/' . $gf['id_foto']); ?>" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
                                             <!-- Tombol untuk membuka modal -->
-                                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal<?= $gf['id_foto']; ?>">Delete</a>
+                                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal<?= $gf['id_foto']; ?>"><i class="fas fa-trash-alt"></i></a>
 
                                             <!-- Modal Konfirmasi Delete -->
                                             <div class="modal fade" id="confirmDeleteModal<?= $gf['id_foto']; ?>" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel<?= $gf['id_foto']; ?>" aria-hidden="true">

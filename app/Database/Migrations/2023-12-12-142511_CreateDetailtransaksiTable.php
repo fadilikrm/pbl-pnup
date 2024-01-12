@@ -25,17 +25,9 @@ class DetailTransaksi extends Migration
                 'constraint' => 5,
                 'unsigned' => true,
             ],
-            'nama_produk' => [
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-            ],
             'jumlah_pembelian' => [
                 'type' => 'INT',
                 'constraint' => 11,
-            ],
-            'harga_satuan' => [
-                'type' => 'INT',
-                'constraint' => 20,
             ],
             'total_harga_pembelian' => [
                 'type' => 'INT',

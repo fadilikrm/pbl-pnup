@@ -9,64 +9,80 @@ use App\Models\DetailTransaksiModel;
 class TransaksiPelanggan extends BaseController
 {
     public function transaksitambahstore()
-    {
-        $namaPelanggan = $this->request->getPost('nama_pelanggan');
-        $alamat = $this->request->getPost('alamat');
-        $nomorTelepon = $this->request->getPost('nomor_telepon');
-        $email = $this->request->getPost('email');
-        $catatanPesanan = $this->request->getPost('catatan');
-        $dataToRecord = session()->get('dataToRecord') ?? [];
-        $totalHarga = array_sum(array_column($dataToRecord, 'total'));
-        $idPelanggan = session()->get('id_pelanggan');
-        $transaksiData = [
-            'id_pelanggan' => $idPelanggan,
-            'nama_pelanggan' => $namaPelanggan,
-            'nomor_telepon' => $nomorTelepon,
-            'alamat' => $alamat,
-            'email' => $email,
-            'tanggal_transaksi' => date('Y-m-d H:i:s'),
-            'total_harga' => $totalHarga,
-            'catatan' => $catatanPesanan,
-            'status_transaksi' => 'Belum Diproses',
+{
+    $namaPelanggan = $this->request->getPost('nama_pelanggan');
+    $alamat = $this->request->getPost('alamat');
+    $nomorTelepon = $this->request->getPost('nomor_telepon');
+    $email = $this->request->getPost('email');
+    $catatanPesanan = $this->request->getPost('catatan');
+    $dataToRecord = session()->get('dataToRecord') ?? [];
+    $totalHarga = array_sum(array_column($dataToRecord, 'total'));
+    $idPelanggan = session()->get('id_pelanggan');
+
+    $timezone = new \DateTimeZone('Asia/Makassar');
+    $tanggalTransaksi = new \DateTime('now', $timezone);
+
+    $transaksiData = [
+        'id_pelanggan' => $idPelanggan,
+        'nama_pelanggan' => $namaPelanggan,
+        'nomor_telepon' => $nomorTelepon,
+        'alamat' => $alamat,
+        'email' => $email,
+        'tanggal_transaksi' => $tanggalTransaksi->format('Y-m-d H:i:s'),
+        'total_harga' => $totalHarga,
+        'catatan' => $catatanPesanan,
+        'status_transaksi' => 'Belum Diproses',
+    ];
+
+    $detailTransaksiData = [];
+    foreach ($dataToRecord as $record) {
+        $detailTransaksiData[] = [
+            'id_produk' => $record['id_produk'],
+            'jumlah_pembelian' => $record['jumlah_pembelian'],
+            'total_harga_pembelian' => $record['total'],
         ];
-
-        $detailTransaksiData = [];
-        foreach ($dataToRecord as $record) {
-            $detailTransaksiData[] = [
-                'id_produk' => $record['id_produk'],
-                'nama_produk' => $record['nama_produk'],
-                'jumlah_pembelian' => $record['jumlah_pembelian'],
-                'harga_satuan' => $record['harga'],
-                'total_harga_pembelian' => $record['total'],
-            ];
-        }
-        $transaksiModel = new TransaksiModel();
-        $detailTransaksiModel = new DetailTransaksiModel();
-        $transaksiId = $transaksiModel->insert($transaksiData);
-        foreach ($detailTransaksiData as &$detail) {
-            $detail['id_transaksi'] = $transaksiId;
-        }
-
-        $detailTransaksiModel->insertBatch($detailTransaksiData);
-        return redirect()->to('/riwayat');
     }
+
+    $transaksiModel = new TransaksiModel();
+    $detailTransaksiModel = new DetailTransaksiModel();
+
+    $transaksiId = $transaksiModel->insert($transaksiData);
+
+    foreach ($detailTransaksiData as &$detail) {
+        $detail['id_transaksi'] = $transaksiId;
+    }
+
+    $detailTransaksiModel->insertBatch($detailTransaksiData);
+
+    return redirect()->to('/riwayat');
+}
+
 
     public function riwayat()
-    {
-        $session = session();
-        if (!$session->get('id_pelanggan')) {
-            return redirect()->to('/login');
-        }
-        $id_pelanggan = $session->get('id_pelanggan');
-        $transaksiModel = new TransaksiModel();
-        $detailTransaksiModel = new DetailTransaksiModel();
-        $transaksiData = $transaksiModel->where('id_pelanggan', $id_pelanggan)->findAll();
-        foreach ($transaksiData as &$transaksi) {
-            $transaksi['detailTransaksi'] = $detailTransaksiModel->where('id_transaksi', $transaksi['id_transaksi'])->findAll();
-        }
-        $data['transaksi'] = $transaksiData;
-        return view('/riwayat', $data);
+{
+    $session = session();
+    if (!$session->get('id_pelanggan')) {
+        return redirect()->to('/login');
     }
+
+    $id_pelanggan = $session->get('id_pelanggan');
+    $transaksiModel = new TransaksiModel();
+    $transaksiData = $transaksiModel->where('id_pelanggan', $id_pelanggan)->findAll();
+
+    $detailTransaksiModel = new DetailTransaksiModel();
+
+    foreach ($transaksiData as &$transaksi) {
+        $transaksi['detailTransaksi'] = $detailTransaksiModel
+            ->select('detailtransaksi.*, produk.nama_produk, produk.harga')
+            ->join('produk', 'detailtransaksi.id_produk = produk.id_produk')
+            ->where('id_transaksi', $transaksi['id_transaksi'])
+            ->findAll();
+    }
+
+    $data['transaksi'] = $transaksiData;
+    return view('/riwayat', $data);
+}
+
 
     public function riwayatedit($id)
     {

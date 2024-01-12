@@ -24,10 +24,6 @@ class Pelanggan extends Migration
                 'constraint' => 255,
                 'null' => true, // Boleh kosong
             ],
-            'role' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-            ],
             'alamat' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,

@@ -8,7 +8,7 @@ class OmsetModel extends Model
 {
     protected $table = 'omset';
     protected $primaryKey = 'id_omset';
-    protected $allowedFields = ['id_produk','date', 'jumlah_beli_produk', 'total_harga_produk', 'total_keseluruhan', 'total_bulanan', 'total_tahunan'];
+    protected $allowedFields = ['id_produk','date', 'jumlah_beli_produk', 'total_harga_produk'];
 
     public function produk()
     {

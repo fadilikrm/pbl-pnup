@@ -34,9 +34,10 @@ class Filters extends BaseConfig
 
     public array $methods = [];
 
-    public array $filters = [
-        'pelanggan' => ['before' => ['pelanggan']],
-        'staff'     => ['before' => ['staff']],
+    public array $filters =  
+    [
+        'staff' => ['before' => ['admin/staff*','admin/pelanggan*','admin/produk*','admin/galerifoto*','admin/testimoni*','admin/omset*','admin/transaksi*' ]],
+        'pelanggan' => ['before' => ['/checkout','/riwayatedit']],
     ];    
 }
 

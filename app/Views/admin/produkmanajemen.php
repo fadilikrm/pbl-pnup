@@ -3,14 +3,19 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-        For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-
+    <h1 class="h3 mb-2 text-gray-800">Table Produk</h1>
+    <p class="mb-4">Tabel ini merupakan table yang mengelola data produk dengan opsi untuk menambahkan,mengedit dan menghapus data.</p>
+    <p>KETERANGAN:</p>
+<p><a  class="btn btn-warning"style="margin-right: 10px;">
+    <i class="fas fa-pencil-alt"></i>
+    </a><span>Digunakan untuk mengubah data</span></p>
+    <p><a  class="btn btn-danger" style="margin-right: 10px;">
+    <i class="fas fa-trash-alt"></i>
+    </a><span>Digunakan untuk menghapus data</span></p>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Manajemen produk</h6>
+            <h6 class="m-0 font-weight-bold " style="color: #d4a762;">Data Produk</h6>
         </div>
         <div class="card-body">
             <div class="text-weight mb-3">
@@ -51,9 +56,9 @@
                                         <td><?= 'Rp ' . number_format($pr['harga'], 0, ",", "."); ?></td>
                                         <td><?= $pr['status']; ?></td>
                                         <td>
-                                            <a href="<?= site_url('admin/produkedit/' . $pr['id_produk']); ?>" class="btn btn-warning">Edit</a>
+                                            <a href="<?= site_url('admin/produkedit/' . $pr['id_produk']); ?>" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
                                             <!-- Tombol untuk membuka modal -->
-                                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal<?= $pr['id_produk']; ?>">Delete</a>
+                                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal<?= $pr['id_produk']; ?>"><i class="fas fa-trash-alt"></i></a>
 
                                             <!-- Modal Konfirmasi Delete -->
                                             <div class="modal fade" id="confirmDeleteModal<?= $pr['id_produk']; ?>" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel<?= $pr['id_produk']; ?>" aria-hidden="true">

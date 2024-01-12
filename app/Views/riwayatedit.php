@@ -2,7 +2,7 @@
 <?= $this->section('auth') ?>
 <div class="container-fluid py-5">
     <div class="container py-5">
-        <h1 class="mb-4">Edit Pembayaran</h1>
+        <h1 class="mb-3" style="text-align: center; color: #d4a762; font-family: 'Times New Roman', Times, serif; font-size: 50px; font-weight: bold;">Edit Pembayaran</h1>
         <form action="<?= route_to('riwayateditstore') ?>" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id_transaksi" value="<?= $transaksi['id_transaksi'] ?>">
             <div class="form-item">
@@ -27,7 +27,7 @@
             </div>
 
             <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Update Pesanan</button>
+                <button type="submit" class="btn border-white py-3 px-4 text-uppercase w-100 text bold" style="background-color: #d4a762; border-color: #d4a762; color: white;">Update Pesanan</button>
             </div>
         </form>
     </div>

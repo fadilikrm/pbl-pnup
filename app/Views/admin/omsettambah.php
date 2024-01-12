@@ -50,12 +50,34 @@
             <div class="container">
                 <div class="row">
                     <!-- Right Section -->
-                    <div class="mx-auto">
-                        <button type="submit" class="btn btn-primary btn-user btn-block">Tambahkan</button>
-                    </div>
-                </div>
-            </div>
-        </form>
+                    <td>
+                                        <button class="mx-auto btn btn-primary" type="button" data-toggle="modal" data-target="#konfirmasiModal"  style="background-color: #d4a762; border-color: #d4a762;">
+                                          Tambahkan
+                                        </button>
+                                      </td>
+                                      
+                                      <div class="modal fade" id="konfirmasiModal" tabindex="-1" role="dialog" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="konfirmasiModalLabel">Konfirmasi Penambahan Data</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              Apakah Anda yakin ingin menambahkan data ini?
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                              <button type="submit" class="btn btn-primary" id="tambahkanBtn5" style="background-color: #d4a762; border-color: #d4a762; color: white;">Ya, Tambahkan</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                        </div>
+                                      </div>
+                                  </form>
     </div>
 </div>
 <?= $this->endSection() ?>
